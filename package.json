@@ -1,0 +1,12 @@
+{
+  "name": "actions-arclight-issue-prefilter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/timi137137/actions-arclight-issue-prefilter.git",
+  "author": "悠静萝莉 <i@mikuhl.cn>",
+  "license": "GPL v3",
+  "dependencies": {
+    "@actions/core": "^1.4.0",
+    "@actions/github": "^5.0.0"
+  }
+}

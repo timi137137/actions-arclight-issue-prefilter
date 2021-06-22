@@ -1,0 +1,30 @@
+name: "Arclight Issue Prefilter"
+description: "Prefilter issues based on a few conditions"
+author: "悠静萝莉"
+inputs:
+  repository:
+    description: "存储库的名称及其作者,例如: actions/checkout"
+    required: true
+    default: ${{ github.repository }}
+  token:
+    description: "给机器人修改Issue的权限Token"
+    required: true
+    default: ${{ github.token }}
+  issue_number:
+    description: "当前事件的Issue编号"
+    required: true
+    default: ${{ github.event.issue.number }}
+  event:
+    description: "触发机器人的事件"
+    required: true
+    default: ${{ github.event.action }}
+  discussion_link_for_feature_request:
+    description: "功能讨论链接"
+    required: false
+    default: 'https://github.com/IzzelAliz/Arclight/discussions/categories/ideas'
+outputs:
+  prefilter_triggered:
+    description: "输出过滤器名称"
+runs:
+  using: "node12"
+  main: "index.js"
