@@ -26,6 +26,10 @@ async function Run(){
 
         Core.info("Init const finish");
 
+        // 防止追溯以前的issue
+        if(IssueNumber <= 300){
+            return null;
+        }
         // 如果是PR直接略过
         if ("pull_request" in Issue) {
             Core.info("This issue is a Pull Request. Skipping...")
