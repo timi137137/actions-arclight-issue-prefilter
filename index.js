@@ -107,7 +107,7 @@ async function Run(){
             if (Problems.size > 0) {
                 const ChineseBody = `<!-- IssueBot Comment --> 我们在您的 Issue 中发现了如下问题：\n\n${[...Problems].map(i => `- ${i}`).join('\n')}\n\n${WantClose ? `因此您的 Issue 已被关闭${WantLock ? '并锁定' : ''}。请自行${WantLock ? '修复上述问题后重新创建新 Issue。' : '按照上述要求对 Issue 进行修改。'}` : `请自行按照上述要求对 Issue 进行修改。`}`
                 const EnglishBody = `<!-- IssueBot Comment --> We found the following problems in your Issue: \n\n${[...Problems].map(i => `- ${i}`).join('\n')}\n\n${WantClose ? `So your Issue has been closed ${WantLock ? 'and locked' : ''}. Please help yourself ${WantLock ? 'to create a new Issue after the fix the problems.' : 'modify the Issue according to the above requirements.'}` : `Please modify the Issue according to the above requirements.`}`
-                const Body = /I am running/m.test(Issue.body) ? EnglishBody : ChineseBody
+                const Body = /[\u4E00-\u9FCC\u3400-\u4DB5\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\ud840-\ud868][\udc00-\udfff]|\ud869[\udc00-\uded6\udf00-\udfff]|[\ud86a-\ud86c][\udc00-\udfff]|\ud86d[\udc00-\udf34\udf40-\udfff]|\ud86e[\udc00-\udc1d]/g.test(Issue.body) ? ChineseBody : EnglishBody
 
                 if (OldCommentID === 0) {
                     await Octokit.rest.issues.createComment({
